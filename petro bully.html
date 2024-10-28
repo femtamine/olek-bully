@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Olek Bully</title>
+<style>
+  body {
+    margin: 0;
+    overflow: hidden;
+    background: url('/mnt/data/image.png') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .spinning-text {
+    font-size: 5em;
+    font-weight: bold;
+    color: red;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: spin 0.5s linear infinite, rainbow 3s linear infinite;
+    cursor: pointer;
+  }
+  @keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+  @keyframes rainbow {
+    0% { color: red; }
+    16% { color: orange; }
+    32% { color: yellow; }
+    48% { color: green; }
+    64% { color: blue; }
+    80% { color: indigo; }
+    100% { color: violet; }
+  }
+</style>
+</head>
+<body>
+
+<div class="spinning-text" onclick="redirectToLink()">OLEK BULLY</div>
+
+<script>
+  const textElement = document.querySelector('.spinning-text');
+  let posX = window.innerWidth / 2;
+  let posY = window.innerHeight / 2;
+  let velocityX = 3;
+  let velocityY = 2;
+
+  function updatePosition() {
+    posX += velocityX;
+    posY += velocityY;
+
+    if (posX <= 0 || posX >= window.innerWidth - textElement.offsetWidth) {
+      velocityX = -velocityX;
+    }
+    if (posY <= 0 || posY >= window.innerHeight - textElement.offsetHeight) {
+      velocityY = -velocityY;
+    }
+
+    textElement.style.left = posX + 'px';
+    textElement.style.top = posY + 'px';
+
+    requestAnimationFrame(updatePosition);
+  }
+
+  function redirectToLink() {
+    window.location.href = "https://www.youtube.com/@majapetro8158";
+  }
+
+  updatePosition();
+</script>
+
+</body>
+</html>
